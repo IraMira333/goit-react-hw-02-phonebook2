@@ -20,17 +20,17 @@ export class App extends Component {
     if (isExisting) {
       alert(`${name} is already in contacts`);
       return;
-    } else {
-      const contactToAdd = {
-        name: name,
-        number: Number(number),
-        id: nanoid(),
-      };
-
-      this.setState(prevState => ({
-        contacts: [...prevState.contacts, contactToAdd],
-      }));
     }
+
+    const contactToAdd = {
+      name: name,
+      number: Number(number),
+      id: nanoid(),
+    };
+
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contactToAdd],
+    }));
   };
 
   removeContact = id => {
@@ -57,7 +57,12 @@ export class App extends Component {
         <ContactForm addContact={this.addContact} />
 
         <h2>Contacts</h2>
-        <Filter onFilterInput={this.onFilterInput} />
+
+        {filteredContacts > 0 ? (
+          <Filter onFilterInput={this.onFilterInput} />
+        ) : (
+          <p className={css.noContact}>You don't have any contact yet</p>
+        )}
         <ContactList
           contacts={filteredContacts}
           removeContact={this.removeContact}
