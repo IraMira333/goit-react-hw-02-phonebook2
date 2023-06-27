@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './ContactList.module.css'
+import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
 const ContactList = ({ contacts, removeContact }) => {
@@ -8,11 +8,15 @@ const ContactList = ({ contacts, removeContact }) => {
       {contacts.map(contact => {
         return (
           <li className={css.liContact} key={contact.id}>
-
             <span>{contact.name} </span>
             <span>{contact.number}:</span>
 
-            <button className={css.listBtn} onClick={() => removeContact(contact.id)}>Delete</button>
+            <button
+              className={css.listBtn}
+              onClick={() => removeContact(contact.id)}
+            >
+              Delete
+            </button>
           </li>
         );
       })}
